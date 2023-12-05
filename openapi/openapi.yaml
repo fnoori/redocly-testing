@@ -1,80 +1,120 @@
 openapi: 3.1.0
 info:
-  version: 1.0.0
-  title: Example.com
-  termsOfService: https://example.com/terms/
-  contact:
-    email: contact@example.com
-    url: http://example.com/contact
+  version: '1.1'
+  title: SFG Brewery API
+  description: | 
+    # Heading 1 - This is the Brewery API Documentation
+    **Lorem ipsum dolor sit amet**, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    **My Ordered List**
+    1. Item 1
+    2. Item 2
+    3. Item 3
+    4. Item 4
+
+    ## Heading 2 
+    *Lorem ipsum dolor sit amet*, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    **My Unordered List**
+    - Item 1
+    - Item 2
+    - Item 3
+    - Item 4
+
+    To complete the migration please use script `migrate.sh`. 
+
+    #### Javascript Example
+    ```
+      const query = new URLSearchParams({
+        pageNumber: '1',
+        pageSize: '25',
+        beerName: 'string',
+        beerStyle: 'LAGER',
+        showInventoryOnHand: 'false'
+      }).toString();
+      
+      const resp = await fetch(
+        `http://api.springframework.guru/api/v1/beer?${query}`,
+        {method: 'GET'}
+      );
+      
+      const data = await resp.text();
+      console.log(data);
+    ```
+
+    ### Heading 3
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    #### Source Code
+    The source code for this API Specification can be [found on Github](https://github.com/springframeworkguru/redocly-sfg-brewery). 
   license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  x-logo:
-    url: https://redocly.github.io/openapi-template/logo.png
-  description: >
-    This is an **example** API to demonstrate features of the OpenAPI
-    specification.
-
-    # Introduction
-
-    This API definition is intended to to be a good starting point for
-    describing your API in [OpenAPI/Swagger
-    format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
-
-    It also demonstrates features of the
-    [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
-    and the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
-    the standard OpenAPI syntax, we use a few 
-    [vendor extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
-
-    # OpenAPI Specification
-
-    The goal of The OpenAPI Specification is to define a standard, language-agnostic interface to REST APIs which
-    allows both humans and computers to discover and understand the capabilities
-    of the service without access to source
-    code, documentation, or through network traffic inspection. When properly
-    defined via OpenAPI, a consumer can 
-    understand and interact with the remote service with a minimal amount of
-    implementation logic. Similar to what
-    interfaces have done for lower-level programming, OpenAPI removes the
-    guesswork in calling the service.
-tags:
-  - name: Echo
-    description: Example echo operations.
-  - name: User
-    description: Operations about users.
-  - name: Tag
-    description: This is a tag description.
+    name: GNU GPLv3
+    url: https://www.gnu.org/licenses/gpl.txt
+  x-logo: 
+    url: https://springframework.guru/wp-content/uploads/2015/02/banner728BlackBackground.png  
+  contact:
+    name: John Thompson
+    url: https://springframework.guru
 servers:
-  - url: https://{tenant}/api/v1
-    variables:
-      tenant:
-        default: www
-        description: Your tenant id
-  - url: https://example.com/api/v1
+  - url: http://localhost:8080
+    description: Local Host
+  - url: http://api.springframework.guru
+    description: Demo API
+x-tagGroups:
+  - name: Beer API Operations
+    tags:
+      - Beer Service
+  - name: Order API Operations
+    tags:
+      - Order Service
+tags:
+  - name: Beer Service
+    description: |
+      # Brewey Beer Operations
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+      ## Heading 2 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  - name: Order Service
+    description: Brewery Order Operations
+security:
+  - {}
 paths:
-  /users/{username}:
-    $ref: paths/users_{username}.yaml
-  /echo:
-    $ref: paths/echo.yaml
-  /pathItem:
-    $ref: paths/pathItem.yaml
-  /pathItemWithExamples:
-    $ref: paths/pathItemWithExamples.yaml
-components:
-  securitySchemes:
-    main_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://example.com/api/oauth/dialog
-          scopes:
-            read:users: read users info
-            write:users: modify or remove users
-    api_key:
-      type: apiKey
-      in: header
-      name: api_key
-    basic_auth:
-      type: http
-      scheme: basic
+  /api/v1/beer:
+    $ref: paths/api_v1_beer.yaml
+  /api/v2/beer:
+      $ref: paths/api_v2_beer.yaml  
+  /api/v1/beer/{beerId}:
+    $ref: paths/api_v1_beer_{beerId}.yaml
+  /api/v1/beerUpc/{upc}:
+    $ref: paths/api_v1_beerUpc_{upc}.yaml
+  /api/v1/customers:
+    $ref: paths/api_v1_customers.yaml
+  /api/v1/customers/{customerId}:
+    $ref: paths/api_v1_customers_{customerId}.yaml
+  /api/v1/customers/{customerId}/orders:
+    $ref: paths/api_v1_customers_{customerId}_orders.yaml
+  /api/v1/customers/{customerId}/orders/{orderId}:
+    $ref: paths/api_v1_customers_{customerId}_orders_{orderId}.yaml
+  /api/v1/customers/{customerId}/orders/{orderId}/pickup:
+    $ref: paths/api_v1_customers_{customerId}_orders_{orderId}_pickup.yaml
